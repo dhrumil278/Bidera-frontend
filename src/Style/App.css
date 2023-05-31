@@ -1,0 +1,277 @@
+:root {
+  --bg-color: #f7f6f2;
+  --light-gray: #ebe6e2;
+  --lighter-gray: #c2beb3;
+  --primary-color: #51bfa4;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  background: var(--bg-color);
+  color: var(--primary-color);
+}
+
+#login {
+  max-width: 280px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+#login h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#login form span {
+  background-color: var(--primary-color);
+  border-radius: 3px 0px 0px 3px;
+  color: var(--white);
+  display: block;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
+}
+
+#login form input {
+  height: 50px;
+  outline: none;
+  border: none;
+}
+
+#login > form > input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"] {
+  background-color: var(--light-gray);
+  border-radius: 0px 3px 3px 0px;
+  color: var(--black);
+  margin-bottom: 1em;
+  padding: 0 16px;
+  width: 230px;
+}
+
+#login > form > input[type="submit"] {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  width: 280px;
+}
+
+#login > form > input[type="submit"]:hover {
+  background-color: var(--primary-color);
+}
+
+#login > .sign-up__actions > p {
+  font-size: 12px;
+  color: var(--lighter-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+#login > .sign-up__actions > p > span {
+  padding-left: 5px;
+  font-size: 10px;
+  align-self: end;
+}
+#login > .sign-up__actions > p > a {
+  padding-left: 5px;
+}
+#login > .sign-up__actions > .login-options {
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
+}
+#login > .sign-up__actions > .login-options > ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  width: 50px;
+}
+#login > .sign-up__actions > .login-options > ul > li > a {
+  margin-right: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+#login > .sign-up__actions > .login-options > ul > li > a > i {
+  background-color: transparent;
+  color: var(--lighter-gray);
+  font-size: 18px;
+}
+
+/* ==========Signu up CSS Start from here==========  */
+#signup {
+  max-width: 550px;
+  margin: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+#signup > h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#signup form span {
+  background-color: var(--primary-color);
+  border-radius: 3px 0px 0px 3px;
+  color: var(--white);
+  display: block;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px;
+}
+
+#signup form input {
+  height: 50px;
+  width: 100%;
+  outline: none;
+  border: none;
+}
+
+#signup form input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"] {
+  background-color: var(--light-gray);
+  border-radius: 0px 3px 3px 0px;
+  color: var(--black);
+  margin-bottom: 1em;
+  padding: 0 16px;
+  /* width: 230px; */
+}
+
+#signup form input[type="submit"] {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  /* width: 280px; */
+}
+
+#signup form input[type="submit"]:hover {
+  background-color: var(--primary-color);
+  /* width: 100%; */
+}
+#signup > form > .grid-1 {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 15px;
+}
+#signup > form > .grid-1 > .grid-items {
+  display: flex;
+}
+#signup > form > .grid-2 {
+  display: grid;
+  grid-template-columns: auto;
+  grid-column-gap: 15px;
+}
+#signup > form > .grid-2 > .grid-items {
+  display: flex;
+}
+
+#signup > .login__actions > p {
+  font-size: 12px;
+  color: var(--lighter-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#signup > .login__actions > p > span {
+  padding-left: 5px;
+  font-size: 10px;
+  align-self: end;
+}
+#signup > .login__actions > p > a {
+  padding-left: 5px;
+}
+
+/*=============== verification code CSS==========  */
+#verification {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+#verification > h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+#verification > form input {
+  height: 50px;
+  width: 50px;
+  outline: none;
+  border: none;
+}
+#verification > form > .verification-grid {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 50px 50px 50px 50px 50px 50px;
+  grid-column-gap: 5px;
+}
+#verification > form > .verification-grid > input {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+#verification > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#verification > form > input[type="text"] {
+  background-color: var(--light-gray);
+  border-radius: 0px 3px 3px 0px;
+  color: var(--black);
+  margin-bottom: 1em;
+  padding: 0 16px;
+  /* width: 230px; */
+}
+
+#verification > form > input[type="submit"] {
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  width: 325px;
+  /* margin: auto; */
+  /* width: 280px; */
+}
+
+#verification > form > input[type="submit"]:hover {
+  background-color: var(--primary-color);
+  /* width: 100%; */
+}
