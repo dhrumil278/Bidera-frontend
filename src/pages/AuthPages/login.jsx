@@ -9,6 +9,8 @@ function Login() {
     password: '',
   };
 
+  const d = 'check'; // remove as soon as possible
+
   const [userinfo, setUserInfo] = useState(initialValues);
   const { email, password } = userinfo;
 
