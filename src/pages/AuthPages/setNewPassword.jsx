@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import { authSetNewPass } from "../../APIs/authAPIs";
 
 function SetNewPassword() {
+  const initialValues = {
+    password: "",
+    confirmPassword: "",
+  };
+
+  const [userinfo, setUserinfo] = useState(initialValues);
+  const { password, confirmPassword } = userinfo;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await authSetNewPass();
+  };
+
+  const handleChange = (e) => {
+    setUserinfo({ ...userinfo, [e.target.name]: e.target.value });
+  };
   return (
     <div className="container">
       <div id="login">
@@ -12,6 +30,9 @@ function SetNewPassword() {
             maxLength="25"
             placeholder="New Password"
             type="password"
+            name="password"
+            value={password}
+            onChange={(e) => handleChange(e)}
             required
           />
           <span className="fa fa-lock"></span>
@@ -20,9 +41,12 @@ function SetNewPassword() {
             maxLength="8"
             placeholder="Confirm New Password"
             type="password"
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={(e) => handleChange(e)}
             required
           />
-          <input type="submit" value="Set" />
+          <input type="submit" value="Set" onClick={(e) => handleSubmit(e)} />
         </form>
       </div>
     </div>

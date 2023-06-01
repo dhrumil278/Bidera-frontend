@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { authVerification } from "../../APIs/authAPIs";
 
 function Verification() {
+  const [verificationCode, setVerificationCode] = useState();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await authVerification(verificationCode);
+  };
   return (
     <div className="container">
       <div id="verification">
@@ -50,7 +58,11 @@ function Verification() {
               required
             />
           </div>
-          <input type="submit" value="Verify" />
+          <input
+            type="submit"
+            value="Verify"
+            onClick={(e) => handleSubmit(e)}
+          />
         </form>
       </div>
     </div>
