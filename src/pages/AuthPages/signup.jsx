@@ -1,8 +1,29 @@
-import React from "react";
-import "../../Style/App.css";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import '../../Style/App.css';
+import { Link } from 'react-router-dom';
+import { authSignup } from '../../APIs/authAPIs';
 
 function Signup() {
+  const initialValues = {
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  };
+
+  const [userinfo, setUserinfo] = useState(initialValues);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await authSignup(userinfo);
+    console.log('response: ', response);
+  };
+
+  const handleChange = (e) => {
+    setUserinfo({ ...userinfo, [e.target.name]: e.target.value });
+  };
   return (
     <div className="container">
       <div id="signup">
@@ -16,6 +37,8 @@ function Signup() {
                 maxLength="25"
                 placeholder="First name"
                 type="text"
+                name="firstName"
+                onChange={(e) => handleChange(e)}
                 required
               />
             </div>
@@ -25,7 +48,9 @@ function Signup() {
                 autoFocus
                 maxLength="25"
                 placeholder="Last name"
+                name="lastName"
                 type="text"
+                onChange={(e) => handleChange(e)}
                 required
               />
             </div>
@@ -37,7 +62,9 @@ function Signup() {
                 autoFocus
                 maxLength="25"
                 placeholder="Contact no."
+                name="phone"
                 type="number"
+                onChange={(e) => handleChange(e)}
                 required
               />
             </div>
@@ -47,7 +74,9 @@ function Signup() {
                 autoFocus
                 maxLength="25"
                 placeholder="Email"
+                name="email"
                 type="email"
+                onChange={(e) => handleChange(e)}
                 required
               />
             </div>
@@ -59,7 +88,9 @@ function Signup() {
                 autoComplete="off"
                 maxLength="8"
                 placeholder="Password"
+                name="password"
                 type="password"
+                onChange={(e) => handleChange(e)}
                 required
               />
             </div>
@@ -69,12 +100,18 @@ function Signup() {
                 autoComplete="off"
                 maxLength="8"
                 placeholder="Confirm Password"
+                name="confirmPassword"
                 type="password"
+                onChange={(e) => handleChange(e)}
                 required
               />
             </div>
           </div>
-          <input type="submit" value="Sign up" />
+          <input
+            type="submit"
+            value="Sign up"
+            onClick={(e) => handleSubmit(e)}
+          />
         </form>
         <div className="login__actions">
           <p>

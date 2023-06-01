@@ -1,8 +1,26 @@
-import React from "react";
-import "../../Style/App.css";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import '../../Style/App.css';
+import { Link } from 'react-router-dom';
+import { authLogin } from '../../APIs/authAPIs';
 
 function Login() {
+  const initialValues = {
+    email: '',
+    password: '',
+  };
+
+  const [userinfo, setUserInfo] = useState(initialValues);
+  const { email, password } = userinfo;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await authLogin(userinfo);
+    console.log('response: ', response);
+  };
+  const handleChange = (e) => {
+    setUserInfo({ ...userinfo, [e.target.name]: e.target.value });
+    console.log('userinfo: ', userinfo);
+  };
   return (
     <div className="container">
       <div id="login">
@@ -14,7 +32,10 @@ function Login() {
             maxLength="25"
             placeholder="Email"
             type="email"
+            value={email}
             required
+            name="email"
+            onChange={(e) => handleChange(e)}
           />
           <span className="fa fa-lock"></span>
           <input
@@ -22,9 +43,16 @@ function Login() {
             maxLength="8"
             placeholder="Password"
             type="password"
+            value={password}
+            name="password"
+            onChange={(e) => handleChange(e)}
             required
           />
-          <input type="submit" value="Log in" />
+          <input
+            type="submit"
+            value="Log in"
+            onClick={(e) => handleSubmit(e)}
+          />
         </form>
         <div className="sign-up__actions">
           <p>
@@ -38,12 +66,12 @@ function Login() {
             <ul>
               <li>
                 <Link>
-                  <i class="fa-brands fa-google"></i>
+                  <i className="fa-brands fa-google"></i>
                 </Link>
               </li>
               <li>
                 <Link>
-                  <i class="fa-brands fa-facebook-f"></i>
+                  <i className="fa-brands fa-facebook-f"></i>
                 </Link>
               </li>
             </ul>
