@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import '../../Style/App.css';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { authSignup } from '../../APIs/authAPIs';
+import '../../Style/App.css';
 
 function Signup() {
   const initialValues = {
@@ -13,104 +14,205 @@ function Signup() {
     confirmPassword: '',
   };
 
-  const [userinfo, setUserinfo] = useState(initialValues);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await authSignup(userinfo);
+  // const [userinfo, setUserinfo] = useState(initialValues);
+
+  const submitData = async (data) => {
+    console.log('data: ', data);
+    const response = await authSignup(data);
     console.log('response: ', response);
   };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  // };
 
-  const handleChange = (e) => {
-    setUserinfo({ ...userinfo, [e.target.name]: e.target.value });
-  };
+  // const handleChange = (e) => {
+  //   setUserinfo({ ...userinfo, [e.target.name]: e.target.value });
+  // };
   return (
     <div className="container">
       <div id="signup">
         <h2 className="login-title">create new one</h2>
-        <form className="signup-form">
+        <form className="signup-form" onSubmit={handleSubmit(submitData)}>
           <div className="grid-1">
-            <div className="grid-items">
-              <span className="fa fa-user"></span>
-              <input
-                autoFocus
-                maxLength="25"
-                placeholder="First name"
-                type="text"
-                name="firstName"
-                onChange={(e) => handleChange(e)}
-                required
-              />
+            <div>
+              <div className="grid-items">
+                <span className="fa fa-user"></span>
+                <input
+                  {...register('firstName', { required: true, maxLength: 25 })}
+                  // autoFocus
+                  // maxLength="25"
+                  placeholder="First name"
+                  type="text"
+                  // name="firstName"
+                  // onChange={(e) => handleChange(e)}
+                  // required
+                />
+              </div>
+              {errors?.firstName?.type === 'required' && (
+                <p> This field is required</p>
+              )}
+              {errors?.firstName?.type === 'maxLength' && (
+                <p>It should not be larger than 25 Char.</p>
+              )}
             </div>
-            <div className="grid-items">
-              <span className="fa fa-user"></span>
-              <input
-                autoFocus
-                maxLength="25"
-                placeholder="Last name"
-                name="lastName"
-                type="text"
-                onChange={(e) => handleChange(e)}
-                required
-              />
+            <div>
+              <div className="grid-items">
+                <span className="fa fa-user"></span>
+                <input
+                  // autoFocus
+                  // maxLength="25"
+                  placeholder="Last name"
+                  {...register('lasstName', { required: true, maxLength: 25 })}
+                  // name="lastName"
+                  type="text"
+                  // onChange={(e) => handleChange(e)}
+                  // required
+                />
+              </div>
+              {errors?.lastName?.type === 'required' && (
+                <p> This field is required</p>
+              )}
+              {errors?.lastName?.type === 'maxLength' && (
+                <p>It should not be larger than 25 Char.</p>
+              )}
             </div>
           </div>
           <div className="grid-1">
-            <div className="grid-items">
-              <span className="fa fa-user"></span>
-              <input
-                autoFocus
-                maxLength="25"
-                placeholder="Contact no."
-                name="phone"
-                type="number"
-                onChange={(e) => handleChange(e)}
-                required
-              />
+            <div>
+              <div className="grid-items">
+                <span className="fa fa-user"></span>
+                <input
+                  // autoFocus
+                  // maxLength="25"
+                  placeholder="Contact no."
+                  {...register('phone', {
+                    required: true,
+                    maxLength: 10,
+                    minLength: 10,
+                  })}
+                  // name="phone"
+                  type="number"
+                  // onChange={(e) => handleChange(e)}
+                  // required
+                />
+              </div>
+              {errors?.phone?.type === 'required' && (
+                <p> This field is required</p>
+              )}
+              {errors?.phone?.type === 'maxLength' && (
+                <p>It should 10 Char long.</p>
+              )}
+              {errors?.phone?.type === 'minLength' && (
+                <p>It should 10 Char long.</p>
+              )}
             </div>
-            <div className="grid-items">
-              <span className="fa fa-user"></span>
-              <input
-                autoFocus
-                maxLength="25"
-                placeholder="Email"
-                name="email"
-                type="email"
-                onChange={(e) => handleChange(e)}
-                required
-              />
+            <div>
+              <div className="grid-items">
+                <span className="fa fa-user"></span>
+                <input
+                  // autoFocus
+                  // maxLength="25"
+                  {...register('email', {
+                    required: true,
+                    maxLength: 25,
+                    minLength: 5,
+                  })}
+                  placeholder="Email"
+                  // name="email"
+                  type="email"
+                  // onChange={(e) => handleChange(e)}
+                  // required
+                />
+              </div>
+              {errors?.email?.type === 'required' && (
+                <p> This field is required</p>
+              )}
+              {errors?.email?.type === 'maxLength' && (
+                <p>It should not be larger than 25 Char.</p>
+              )}
+              {errors?.email?.type === 'minLength' && (
+                <p>It should at least 5 Char long.</p>
+              )}
             </div>
           </div>
           <div className="grid-2">
-            <div className="grid-items">
-              <span className="fa fa-lock"></span>
-              <input
-                autoComplete="off"
-                maxLength="8"
-                placeholder="Password"
-                name="password"
-                type="password"
-                onChange={(e) => handleChange(e)}
-                required
-              />
+            <div>
+              <div className="grid-items">
+                <span className="fa fa-lock"></span>
+                <input
+                  // autoComplete="off"
+                  // maxLength="8"
+                  placeholder="Password"
+                  // name="password"
+                  {...register('password', {
+                    required: true,
+                    maxLength: 35,
+                    minLength: 8,
+                    pattern:
+                      /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z]).{8,}$/,
+                  })}
+                  type="password"
+                  // onChange={(e) => handleChange(e)}
+                  // required
+                />
+              </div>
+              {errors?.password?.type === 'required' && (
+                <p> This field is required</p>
+              )}
+              {errors?.password?.type === 'maxLength' && (
+                <p>It should not be larger than 25 Char.</p>
+              )}
+              {errors?.password?.type === 'minLength' && (
+                <p>It should at least 5 Char long.</p>
+              )}
             </div>
-            <div className="grid-items">
-              <span className="fa fa-lock"></span>
-              <input
-                autoComplete="off"
-                maxLength="8"
-                placeholder="Confirm Password"
-                name="confirmPassword"
-                type="password"
-                onChange={(e) => handleChange(e)}
-                required
-              />
+            <div>
+              <div className="grid-items">
+                <span className="fa fa-lock"></span>
+                <input
+                  // autoComplete="off"
+                  // maxLength="8"
+                  placeholder="Confirm Password"
+                  {...register('confirmPassword', {
+                    required: true,
+                    maxLength: 35,
+                    minLength: 8,
+                    pattern:
+                      /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\d)(?=.*[a-z]).{8,}$/,
+                    validate: (value) => {
+                      if (watch('password') !== value) {
+                        return <p>Both password is not same</p>;
+                      }
+                    },
+                  })}
+                  // name="confirmPassword"
+                  type="password"
+                  // onChange={(e) => handleChange(e)}
+                  // required
+                />
+              </div>
+              {errors?.confirmPassword?.type === 'required' && (
+                <p> This field is required</p>
+              )}
+              {errors?.confirmPassword?.type === 'maxLength' && (
+                <p>It should not be larger than 25 Char.</p>
+              )}
+              {errors?.confirmPassword?.type === 'minLength' && (
+                <p>It should at least 5 Char long.</p>
+              )}
             </div>
           </div>
           <input
             type="submit"
             value="Sign up"
-            onClick={(e) => handleSubmit(e)}
+            // onClick={(e) => handleSubmit(e)}
           />
         </form>
         <div className="login__actions">

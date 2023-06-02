@@ -15,6 +15,15 @@
   color: var(--primary-color);
 }
 
+/* Validation Erro CSS  */
+
+#errorUseForm {
+  font-size: 12px;
+  padding-left: 50px;
+  color: red;
+  margin-bottom: 5px;
+}
+
 #login {
   max-width: 280px;
   margin: auto;
@@ -191,7 +200,7 @@ input[type="number"] {
   grid-column-gap: 15px;
 }
 
-#signup>form>.grid-1>.grid-items {
+#signup>form>.grid-1>div>.grid-items {
   display: flex;
 }
 
@@ -201,7 +210,7 @@ input[type="number"] {
   grid-column-gap: 15px;
 }
 
-#signup>form>.grid-2>.grid-items {
+#signup>form>.grid-2>div>.grid-items {
   display: flex;
 }
 

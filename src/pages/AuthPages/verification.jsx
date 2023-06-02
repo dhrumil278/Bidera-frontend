@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import { authVerification } from "../../APIs/authAPIs";
+import React, { useState } from 'react';
+import { authVerification } from '../../APIs/authAPIs';
+import OtpInput from 'react-otp-input';
+import '../../Style/App.css';
 
 function Verification() {
-  const [verificationCode, setVerificationCode] = useState();
+  const [verificationCode, setVerificationCode] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(verificationCode);
     const response = await authVerification(verificationCode);
+    console.log('response: ', response);
   };
   return (
     <div className="container">
@@ -15,47 +18,17 @@ function Verification() {
         <h2 className="login-title">Verification Code</h2>
         <form className="login-form">
           <div className="verification-grid">
-            <input
-              autoFocus
-              maxLength="1"
-              placeholder="0"
-              type="text"
-              required
-            />
-            <input
-              autoFocus
-              maxLength="1"
-              placeholder="0"
-              type="text"
-              required
-            />
-            <input
-              autoFocus
-              maxLength="1"
-              placeholder="0"
-              type="text"
-              required
-            />
-            <input
-              autoFocus
-              maxLength="1"
-              placeholder="0"
-              type="text"
-              required
-            />
-            <input
-              autoFocus
-              maxLength="1"
-              placeholder="0"
-              type="text"
-              required
-            />
-            <input
-              autoFocus
-              maxLength="1"
-              placeholder="0"
-              type="text"
-              required
+            <OtpInput
+              value={verificationCode}
+              onChange={setVerificationCode}
+              numInputs={6}
+              renderSeparator={<span>&nbsp;</span>}
+              renderInput={(props) => <input {...props} />}
+              inputStyle={{
+                width: '50px',
+                fontSize: '15px',
+                fontWeight: '600',
+              }}
             />
           </div>
           <input

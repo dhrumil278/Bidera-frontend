@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { authSetNewPass } from "../../APIs/authAPIs";
+import React, { useState } from 'react';
+import { authSetNewPass } from '../../APIs/authAPIs';
 
 function SetNewPassword() {
   const initialValues = {
-    password: "",
-    confirmPassword: "",
+    password: '',
+    confirmPassword: '',
   };
 
   const [userinfo, setUserinfo] = useState(initialValues);
@@ -14,6 +14,7 @@ function SetNewPassword() {
     e.preventDefault();
 
     const response = await authSetNewPass();
+    console.log('response: ', response);
   };
 
   const handleChange = (e) => {
